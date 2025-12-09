@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://deobxo14cc5i3"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_teeat"]
+[ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet.tscn" id="2_hi3vb"]
+[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_r6qoi"]
+[ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/rocket.tscn" id="3_us827"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aolpp"]
+size = Vector2(64, 62)
+
+[node name="Player" type="Area2D" node_paths=PackedStringArray("mouthPos")]
+script = ExtResource("1_teeat")
+bulletScene = ExtResource("2_hi3vb")
+rocketScene = ExtResource("3_us827")
+mouthPos = NodePath("Mouth/Marker2D")
+speedX = 100.0
+speedY = 100.0
+enable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aolpp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_r6qoi")
+
+[node name="Mouth" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Mouth"]
+modulate = Color(0.54902, 0, 0, 1)
+position = Vector2(23, -2.38419e-07)
+scale = Vector2(0.01, 0.007)
+texture = ExtResource("2_r6qoi")
+
+[node name="Marker2D" type="Marker2D" parent="Mouth"]
+position = Vector2(23, 0)
