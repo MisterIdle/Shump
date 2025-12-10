@@ -25,6 +25,7 @@ public partial class GameManager : Node2D
     {
         foreach (GameObject lGO in gameContainer.GetChildren())
         {
+            GD.Print(lGO.Name);
             lGO.Initialize();
         }
     }

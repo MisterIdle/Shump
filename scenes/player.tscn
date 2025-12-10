@@ -1,21 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://deobxo14cc5i3"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_teeat"]
-[ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet.tscn" id="2_hi3vb"]
+[ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet/bullet.tscn" id="2_1d8ap"]
 [ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_r6qoi"]
-[ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/rocket.tscn" id="3_us827"]
+[ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/bullet/rocket.tscn" id="3_kgsam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aolpp"]
 size = Vector2(64, 62)
 
 [node name="Player" type="Area2D" node_paths=PackedStringArray("mouthPos")]
+collision_mask = 6
 script = ExtResource("1_teeat")
-bulletScene = ExtResource("2_hi3vb")
-rocketScene = ExtResource("3_us827")
+bulletSpace = 200.0
+bulletScene = ExtResource("2_1d8ap")
+rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
-speedX = 100.0
-speedY = 100.0
-enable = true
+speedX = 200.0
+speedY = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aolpp")
@@ -28,9 +29,9 @@ texture = ExtResource("2_r6qoi")
 
 [node name="Sprite2D" type="Sprite2D" parent="Mouth"]
 modulate = Color(0.54902, 0, 0, 1)
-position = Vector2(23, -2.38419e-07)
+position = Vector2(9, -5.68434e-14)
 scale = Vector2(0.01, 0.007)
 texture = ExtResource("2_r6qoi")
 
 [node name="Marker2D" type="Marker2D" parent="Mouth"]
-position = Vector2(23, 0)
+position = Vector2(9, 0)

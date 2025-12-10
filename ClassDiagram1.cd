@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ammo" Collapsed="true">
+    <Position X="17.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\Ammo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bullet" Collapsed="true">
+    <Position X="16.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="24.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACAAAIEEAAQAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entity" Collapsed="true">
+    <Position X="23" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAgCAAAIg=</HashCode>
+      <FileName>scripts\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="27.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAABABAAAAgAAQAAAAAAAA=</HashCode>
+      <FileName>scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject" Collapsed="true">
+    <Position X="20.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAIAAAAAAAQAIAAAAAAAAAAAIAAAgAgAAAAAAAAA=</HashCode>
+      <FileName>scripts\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Main" Collapsed="true">
+    <Position X="29.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Movable" Collapsed="true">
+    <Position X="20.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAIAQAAAAQAAAAAAAA=</HashCode>
+      <FileName>scripts\Movable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="20.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACgAAAAAAkAAAAEAAAAAAAABABIAAAEAEAAAAEAAAA=</HashCode>
+      <FileName>scripts\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PopCorn" Collapsed="true">
+    <Position X="23" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\PopCorn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rocket" Collapsed="true">
+    <Position X="18.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEIAAAAAAAACAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\Rocket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShootingEnemy" Collapsed="true">
+    <Position X="25.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAMAAAAAQAAAAAAAAAACAAAAAQAAAAAAgAAAAA=</HashCode>
+      <FileName>scripts\ShootingEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils" Collapsed="true">
+    <Position X="27.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>scripts\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Turtle" Collapsed="true">
+    <Position X="25.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>scenes\entity\Turtle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

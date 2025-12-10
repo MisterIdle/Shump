@@ -1,14 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bov1o2ttuha02"]
 
-[ext_resource type="Script" path="res://scripts/ammo/Bullet.cs" id="1_udjrs"]
-[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_v3jak"]
+[ext_resource type="Script" path="res://scripts/Bullet.cs" id="1_4o6b6"]
+[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_moyvs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdv70"]
 
 [node name="Bullet" type="Area2D"]
-script = ExtResource("1_udjrs")
-speedX = 100.0
-speedY = 100.0
+collision_mask = 6
+script = ExtResource("1_4o6b6")
+speedX = 200.0
+speedY = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pdv70")
@@ -16,4 +17,4 @@ shape = SubResource("RectangleShape2D_pdv70")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.01, 0.01)
-texture = ExtResource("2_v3jak")
+texture = ExtResource("2_moyvs")

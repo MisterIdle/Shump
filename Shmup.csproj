@@ -5,4 +5,15 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="scripts\ammo\**" />
+    <Compile Remove="scripts\enemy\**" />
+    <Compile Remove="scripts\utils\**" />
+    <EmbeddedResource Remove="scripts\ammo\**" />
+    <EmbeddedResource Remove="scripts\enemy\**" />
+    <EmbeddedResource Remove="scripts\utils\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
 </Project>

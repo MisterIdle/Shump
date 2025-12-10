@@ -5,19 +5,35 @@ public partial class Player : Entity
 {
     [ExportCategory("Shooting")]
     [Export] private bool autoShoot;
-    [Export] private float shotSpace = 175;
+    [Export] private float bulletSpace;
+
+    private Bullet lastBullet;
 
     [Export] public PackedScene bulletScene;
     [Export] public PackedScene rocketScene;
 
     [Export] public Marker2D mouthPos;
 
+    private static Player instance;
+
+    public static Player GetInstance()
+    {
+        return instance;
+    }
+
+    public override void _Ready()
+    {
+        if (instance == null)
+            instance = this;
+        else QueueFree();
+    }
+
     protected override void DoAction(float pDelta)
     {
-        if (Input.IsActionJustPressed("ui_accept"))
+        if (CanFire())
         {
-            Rocket.Create(rocketScene, this, this, mouthPos.GlobalPosition);
-            //Bullet.Create(bulletScene, this, mouthPos.GlobalPosition, Vector2.Right);
+            lastBullet = Bullet.Create(bulletScene, this, mouthPos.GlobalPosition, Vector2.Right);
+            //Rocket.Create(rocketScene, this, Enemy.GetTarget(), mouthPos.GlobalPosition);
         }
 
         DoMove(pDelta);
@@ -29,6 +45,10 @@ public partial class Player : Entity
 
         Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         velocity = lDirection;
+    }
 
+    private bool CanFire()
+    {
+        return Input.IsActionPressed("SHOOT") && (!IsInstanceValid(lastBullet) || lastBullet.Position.X - Position.X > bulletSpace);
     }
 }

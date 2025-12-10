@@ -5,8 +5,9 @@ public partial class GameObject : Area2D
 {
 	[Export] public bool enable;
 
+	protected RandomNumberGenerator rand = new RandomNumberGenerator();
 	protected GameManager gameManager;
-	[Export] protected Node2D gameContainer;
+	protected Node2D gameContainer;
 
 	public virtual void Initialize()
 	{
@@ -15,6 +16,8 @@ public partial class GameObject : Area2D
 
         AreaEntered += OnCollide;
         enable = true;
+
+		GD.Print(Name + " is ready");
     }
 
 	public override void _Process(double pDelta)

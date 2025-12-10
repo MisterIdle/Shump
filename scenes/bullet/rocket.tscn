@@ -1,14 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://d157avdc4ypq4"]
 
-[ext_resource type="Script" path="res://scripts/ammo/Rocket.cs" id="1_1phwq"]
-[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="1_ns86x"]
+[ext_resource type="Script" path="res://scripts/Rocket.cs" id="1_51r88"]
+[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_v0tqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_af1o1"]
 
 [node name="Rocket" type="Area2D"]
-script = ExtResource("1_1phwq")
-speedX = 5000.0
-speedY = 5000.0
+collision_mask = 6
+script = ExtResource("1_51r88")
+speedX = 150.0
+speedY = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_af1o1")
@@ -16,4 +17,4 @@ shape = SubResource("RectangleShape2D_af1o1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.01, 0.01)
-texture = ExtResource("1_ns86x")
+texture = ExtResource("2_v0tqv")
