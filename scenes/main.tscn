@@ -4,24 +4,35 @@
 [ext_resource type="PackedScene" uid="uid://deobxo14cc5i3" path="res://scenes/player.tscn" id="1_raey7"]
 [ext_resource type="Script" path="res://scripts/GameManager.cs" id="2_gsbi6"]
 [ext_resource type="PackedScene" uid="uid://ci0d8ipqdelnt" path="res://scenes/entity/popcorn.tscn" id="4_emdvl"]
-[ext_resource type="PackedScene" uid="uid://3ih3q3sbmy0x" path="res://scenes/entity/turtle.tscn" id="5_orr64"]
+[ext_resource type="PackedScene" uid="uid://y3jnykne6e4a" path="res://scenes/bullet/camera.tscn" id="5_0ienn"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0wpnf")
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("gameContainer")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("gameContainer", "baseContainer")]
 script = ExtResource("2_gsbi6")
 gameContainer = NodePath("../GameContainer")
+baseContainer = NodePath("../GameContainer/BaseContainer")
+scrollSpeed = 50.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1080, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer"]
+polygon = PackedVector2Array(1, 653, 305, 712, 534, 591, 601, 678, 689, 656, 934, 611, 1081, 653, 1081, 761, 127, 773, 0, 763)
 
 [node name="GameContainer" type="Node2D" parent="."]
 
-[node name="Turtle" parent="GameContainer" instance=ExtResource("5_orr64")]
-position = Vector2(1002, 214)
+[node name="BaseContainer" type="Node2D" parent="GameContainer"]
 
-[node name="PopCorn" parent="GameContainer" instance=ExtResource("4_emdvl")]
-position = Vector2(733, 396)
-speedX = 200.0
-speedY = 200.0
+[node name="Camera" parent="GameContainer/BaseContainer" instance=ExtResource("5_0ienn")]
 
-[node name="Player" parent="GameContainer" instance=ExtResource("1_raey7")]
+[node name="Player" parent="GameContainer/BaseContainer" instance=ExtResource("1_raey7")]
 position = Vector2(292, 274)
+
+[node name="EnemyContainer" type="Node2D" parent="GameContainer"]
+
+[node name="PopCorn" parent="GameContainer/EnemyContainer" instance=ExtResource("4_emdvl")]
+position = Vector2(1138, 407)

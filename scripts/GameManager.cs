@@ -4,8 +4,12 @@ using System;
 public partial class GameManager : Node2D
 {
     [Export] public Node2D gameContainer;
+    [Export] public Node2D baseContainer;
 
     private static GameManager instance;
+
+    [Export] public float scrollSpeed;
+
     public static GameManager GetInstance()
     {
         return instance;
@@ -18,15 +22,9 @@ public partial class GameManager : Node2D
 
         GD.Print(Name + " is ready");
 
-        EnableInScreen();
-    }
-
-    private void EnableInScreen()
-    {
-        foreach (GameObject lGO in gameContainer.GetChildren())
+        foreach (GameObject lGameObject in baseContainer.GetChildren())
         {
-            GD.Print(lGO.Name);
-            lGO.Initialize();
+            lGameObject.Initialize();
         }
     }
 }

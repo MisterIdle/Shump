@@ -14,6 +14,9 @@ public partial class Player : Entity
 
     [Export] public Marker2D mouthPos;
 
+    public int level;
+    public int smartBombe;
+
     private static Player instance;
 
     public static Player GetInstance()
@@ -32,7 +35,7 @@ public partial class Player : Entity
     {
         if (CanFire())
         {
-            lastBullet = Bullet.Create(bulletScene, this, mouthPos.GlobalPosition, Vector2.Right);
+            //lastBullet = Bullet.Create(bulletScene, this, mouthPos.GlobalPosition, Vector2.Right);
             //Rocket.Create(rocketScene, this, Enemy.GetTarget(), mouthPos.GlobalPosition);
         }
 
@@ -43,9 +46,14 @@ public partial class Player : Entity
     {
         base.DoMove(pDelta);
 
-        Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
-        velocity = lDirection;
+        Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN").Normalized();
+
+        Vector2 lScroll = Vector2.Right * gameManager.scrollSpeed;
+        Vector2 lMove = (lDirection * speed + lScroll) * pDelta;
+
+        Position += lMove;
     }
+
 
     private bool CanFire()
     {

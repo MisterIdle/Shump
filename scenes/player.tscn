@@ -15,8 +15,7 @@ bulletSpace = 200.0
 bulletScene = ExtResource("2_1d8ap")
 rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
-speedX = 200.0
-speedY = 200.0
+speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aolpp")

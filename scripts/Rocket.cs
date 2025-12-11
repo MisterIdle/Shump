@@ -7,11 +7,10 @@ public partial class Rocket : Ammo
 
     private const int ROTATION_SPEED = 10;
 
-    public static Rocket Create(PackedScene pScene, Entity pEntity, Entity pTarget, Vector2 pPos)
+    public static Rocket Create(PackedScene pScene, Entity pTarget, Vector2 pPos)
     {
         Rocket lRocket = (Rocket)pScene.Instantiate();
 
-        lRocket.shooter = pEntity;
         lRocket.Position = pPos;
         lRocket.target = pTarget;
 

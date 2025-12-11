@@ -12,6 +12,7 @@ public partial class Enemy : Entity
     {
         enemyList.Add(this);
         velocity = Vector2.Left;
+
         base.Initialize();
     }
 
@@ -19,7 +20,7 @@ public partial class Enemy : Entity
     {
         base.DoMove(pDelta);
 
-        if (GetPlayerPositon().DistanceTo(Position) < playerDistance)
+        if (player.GlobalPosition.DistanceTo(Position) < playerDistance)
         {
             DetectPlayer();
         }
@@ -36,11 +37,6 @@ public partial class Enemy : Entity
             }
         }
         return null;
-    }
-
-    public Vector2 GetPlayerPositon()
-    {
-        return Player.GetInstance().GlobalPosition;
     }
 
     protected virtual void DetectPlayer() { }

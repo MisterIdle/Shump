@@ -3,11 +3,8 @@ using System;
 
 public partial class Movable : GameObject
 {
-    [Export] public float speedX;
-    [Export] public float speedY;
-
+    [Export] public float speed;
     public Vector2 velocity;
-    public Vector2 speed;
 
     protected override void DoAction(float pDelta)
     {
@@ -16,7 +13,6 @@ public partial class Movable : GameObject
 
     protected virtual void DoMove(float pDelta) 
     {
-        speed = new Vector2(speedX, speedY);
         Position += velocity * speed * pDelta;
     }
 }

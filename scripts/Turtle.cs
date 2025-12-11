@@ -6,6 +6,6 @@ public partial class Turtle : ShootingEnemy
     protected override void DoShoot()
     {
         base.DoShoot();
-        Bullet.Create(shootScene, this, Position, Vector2.Left);
+        Rocket.Create(shootScene, player, Position);
     }
 }

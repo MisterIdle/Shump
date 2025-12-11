@@ -2,8 +2,6 @@ using Godot;
 
 public partial class Ammo : Movable
 {
-    protected GameObject shooter;
-
     [Export] private int lifeTime = 5;
 
     public override void Initialize()

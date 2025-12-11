@@ -3,11 +3,14 @@ using System;
 
 public partial class GameObject : Area2D
 {
-	[Export] public bool enable;
+	public bool enable;
 
 	protected RandomNumberGenerator rand = new RandomNumberGenerator();
 	protected GameManager gameManager;
+
 	protected Node2D gameContainer;
+
+	protected Player player;
 
 	public virtual void Initialize()
 	{
@@ -20,14 +23,19 @@ public partial class GameObject : Area2D
 		GD.Print(Name + " is ready");
     }
 
-	public override void _Process(double pDelta)
-	{
-		if (!enable) return;
+    public override void _Process(double delta)
+    {
+        // A CHANGER QUAND LE LOADER SERA ACTIF
+        if (player == null)
+            player = Player.GetInstance();
 
-		float lDelta = (float)pDelta;
-		DoAction(lDelta);
-	}
+        if (!enable)
+            return;
 
-	protected virtual void DoAction(float pDelta) { }
+        DoAction((float)delta);
+    }
+
+
+    protected virtual void DoAction(float pDelta) { }
 	protected virtual void OnCollide(Area2D pArea) { }
 }

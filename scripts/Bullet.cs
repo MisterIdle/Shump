@@ -2,11 +2,10 @@ using Godot;
 
 public partial class Bullet : Ammo
 {
-    public static Bullet Create(PackedScene pScene, Entity pEntity, Vector2 pPos, Vector2 pWay, float pAngle = 0)
+    public static Bullet Create(PackedScene pScene, Vector2 pPos, Vector2 pWay, float pAngle = 0)
     {
         Bullet lBullet = (Bullet)pScene.Instantiate();
 
-        lBullet.shooter = pEntity;
         lBullet.Position = pPos;
 
         lBullet.SetInitialMovement(pAngle, pWay);
@@ -19,9 +18,9 @@ public partial class Bullet : Ammo
     {
         rand.Randomize();
 
-        float spreadAngle = rand.RandfRange(-pAngle, pAngle);
-        float finalAngle = pWay.Angle() + spreadAngle;
-        velocity = Vector2.FromAngle(finalAngle) * pWay.Length();
-        Rotation = finalAngle;
+        float lSpreadAngle = rand.RandfRange(-pAngle, pAngle);
+        float lFinalAngle = pWay.Angle() + lSpreadAngle;
+        velocity = Vector2.FromAngle(lFinalAngle) * pWay.Length();
+        Rotation = lFinalAngle;
     }
 }
