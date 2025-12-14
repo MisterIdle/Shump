@@ -29,7 +29,7 @@ public partial class Trigger : Movable
         base.OnCollide(pArea);
 
         // Ne pas le faire dans les layer car trop complexe pour rien
-        if (pArea is GameObject lGameObject && lGameObject is not Ammo)
+        if (pArea is GameObject lGameObject && !lGameObject.active)
             lGameObject.Initialize();
     }
 }
