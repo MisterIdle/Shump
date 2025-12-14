@@ -5,6 +5,7 @@ public partial class GameManager : Node2D
 {
     [Export] public Node2D gameContainer;
     [Export] public Node2D baseContainer;
+    [Export] public Node2D bulletContainer;
 
     private static GameManager instance;
 
@@ -22,9 +23,13 @@ public partial class GameManager : Node2D
 
         GD.Print(Name + " is ready");
 
-        foreach (GameObject lGameObject in baseContainer.GetChildren())
+        foreach (Node lObject in baseContainer.GetChildren())
         {
-            lGameObject.Initialize();
+            if (lObject is Player lPlayer)
+                lPlayer.Initialize();
+
+            if (lObject is Trigger lCamera)
+                lCamera.Initialize();
         }
     }
 }

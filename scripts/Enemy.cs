@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Enemy : Entity
 {
     private static List<Enemy> enemyList = new List<Enemy>();
-    [Export] private float playerDistance;
+    [Export] protected float playerDistance;
     private bool targeted;
 
     public override void Initialize()
@@ -14,16 +14,6 @@ public partial class Enemy : Entity
         velocity = Vector2.Left;
 
         base.Initialize();
-    }
-
-    protected override void DoMove(float pDelta)
-    {
-        base.DoMove(pDelta);
-
-        if (player.GlobalPosition.DistanceTo(Position) < playerDistance)
-        {
-            DetectPlayer();
-        }
     }
 
     public static Enemy GetTarget()

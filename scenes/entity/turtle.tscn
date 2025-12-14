@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Turtle.cs" id="1_2cpat"]
 [ext_resource type="Texture2D" uid="uid://bqpfdm0uu4p" path="res://sprites/icon.svg" id="1_ul2jv"]
-[ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/bullet/rocket.tscn" id="2_qnhpe"]
+[ext_resource type="PackedScene" uid="uid://cvuojolbkcpt6" path="res://scenes/bullet/enemybullet.tscn" id="2_5ja5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5co2"]
 size = Vector2(88, 90)
@@ -11,7 +11,7 @@ size = Vector2(88, 90)
 collision_layer = 2
 script = ExtResource("1_2cpat")
 shootRate = 0.5
-shootScene = ExtResource("2_qnhpe")
+shootScene = ExtResource("2_5ja5s")
 playerDistance = 40.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,11 +1,11 @@
 using Godot;
 using System;
 
-public partial class Camera : Movable
+public partial class Trigger : Movable
 {
-    private static Camera instance;
+    private static Trigger instance;
 
-    public static Camera GetInstance()
+    public static Trigger GetInstance()
     {
         return instance;
     }
@@ -28,7 +28,8 @@ public partial class Camera : Movable
     {
         base.OnCollide(pArea);
 
-        if (pArea is GameObject lGameObject)
+        // Ne pas le faire dans les layer car trop complexe pour rien
+        if (pArea is GameObject lGameObject && lGameObject is not Ammo)
             lGameObject.Initialize();
     }
 }

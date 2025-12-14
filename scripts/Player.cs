@@ -33,9 +33,11 @@ public partial class Player : Entity
 
     protected override void DoAction(float pDelta)
     {
+
         if (CanFire())
         {
-            //lastBullet = Bullet.Create(bulletScene, this, mouthPos.GlobalPosition, Vector2.Right);
+            lastBullet = Bullet.Create(bulletScene, mouthPos.GlobalPosition, Vector2.Right);
+            gameContainer.AddChild(lastBullet);
             //Rocket.Create(rocketScene, this, Enemy.GetTarget(), mouthPos.GlobalPosition);
         }
 

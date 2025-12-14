@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqnwl47to4sjq"]
+
+[ext_resource type="Script" path="res://scripts/Spiky.cs" id="1_0vsqn"]
+[ext_resource type="PackedScene" uid="uid://bvxmdq624404s" path="res://scenes/bullet/spike.tscn" id="2_ljxjl"]
+[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/Circle.png" id="3_ghtfi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxdhr"]
+size = Vector2(64, 66)
+
+[node name="Spiky" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_0vsqn")
+leftBoundary = 500.0
+shootRate = 3.0
+shootScene = ExtResource("2_ljxjl")
+playerDistance = 1000.0
+health = 6
+speed = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oxdhr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.784314, 0, 1)
+texture_filter = 1
+texture = ExtResource("3_ghtfi")

@@ -1,20 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://bov1o2ttuha02"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.cs" id="1_4o6b6"]
-[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_moyvs"]
+[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/Circle.png" id="2_x2pt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdv70"]
+size = Vector2(64, 64)
 
 [node name="Bullet" type="Area2D"]
+scale = Vector2(0.3, 0.3)
 collision_mask = 6
 script = ExtResource("1_4o6b6")
-speedX = 200.0
-speedY = 200.0
+speed = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pdv70")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("2_moyvs")
+texture = ExtResource("2_x2pt1")

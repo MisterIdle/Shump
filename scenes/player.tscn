@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://deobxo14cc5i3"]
+[gd_scene load_steps=7 format=3 uid="uid://deobxo14cc5i3"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_teeat"]
 [ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet/bullet.tscn" id="2_1d8ap"]
-[ext_resource type="Texture2D" uid="uid://cj7fgbe7qehmt" path="res://sprites/circle.png" id="2_r6qoi"]
 [ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/bullet/rocket.tscn" id="3_kgsam"]
+[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/Circle.png" id="4_82qun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aolpp"]
 size = Vector2(64, 62)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_272wc"]
 
 [node name="Player" type="Area2D" node_paths=PackedStringArray("mouthPos")]
 collision_mask = 6
@@ -21,8 +23,8 @@ speed = 200.0
 shape = SubResource("RectangleShape2D_aolpp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_r6qoi")
+texture_filter = 1
+texture = ExtResource("4_82qun")
 
 [node name="Mouth" type="Node2D" parent="."]
 
@@ -30,7 +32,7 @@ texture = ExtResource("2_r6qoi")
 modulate = Color(0.54902, 0, 0, 1)
 position = Vector2(9, -5.68434e-14)
 scale = Vector2(0.01, 0.007)
-texture = ExtResource("2_r6qoi")
+texture = SubResource("CompressedTexture2D_272wc")
 
 [node name="Marker2D" type="Marker2D" parent="Mouth"]
 position = Vector2(9, 0)

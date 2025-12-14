@@ -8,8 +8,8 @@ public partial class ShootingEnemy : Enemy
 
     public override void Initialize()
     {
-        StartShooting();
         base.Initialize();
+        StartShooting();
     }
 
     private void StartShooting()
@@ -18,10 +18,10 @@ public partial class ShootingEnemy : Enemy
 
         lTimer.WaitTime = shootRate;
         lTimer.Autostart = true;
-        lTimer.Timeout += DoShoot;
+        lTimer.Timeout += DoAttack;
 
         AddChild(lTimer);
     }
 
-    protected virtual void DoShoot() { }
+    protected virtual void DoAttack() { }
 }

@@ -3,9 +3,9 @@ using System;
 
 public partial class Turtle : ShootingEnemy
 {
-    protected override void DoShoot()
+    protected override void DoAttack()
     {
-        base.DoShoot();
-        Rocket.Create(shootScene, player, Position);
+        base.DoAttack();
+        Bullet.Create(shootScene, Position, Vector2.Left);
     }
 }

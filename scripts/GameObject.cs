@@ -12,27 +12,25 @@ public partial class GameObject : Area2D
 
 	protected Player player;
 
-	public virtual void Initialize()
+    public virtual void Initialize()
 	{
 		gameManager = GameManager.GetInstance();
 		gameContainer = gameManager.gameContainer;
 
+        player = Player.GetInstance();
+
         AreaEntered += OnCollide;
+
         enable = true;
 
 		GD.Print(Name + " is ready");
     }
 
-    public override void _Process(double delta)
+    public override void _Process(double pDelta)
     {
-        // A CHANGER QUAND LE LOADER SERA ACTIF
-        if (player == null)
-            player = Player.GetInstance();
+        if (!enable) return;
 
-        if (!enable)
-            return;
-
-        DoAction((float)delta);
+        DoAction((float)pDelta);
     }
 
 

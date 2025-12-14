@@ -5,7 +5,9 @@ public partial class Rocket : Ammo
 {
     private Entity target;
 
-    private const int ROTATION_SPEED = 10;
+    public bool isActive;
+
+    [Export] private float rotationSpeed = 10;
 
     public static Rocket Create(PackedScene pScene, Entity pTarget, Vector2 pPos)
     {
@@ -23,11 +25,12 @@ public partial class Rocket : Ammo
     {
         base.DoMove(pDelta);
 
+        if (!isActive) return;
+
         Vector2 lDirection = (target.Position - Position).Normalized();
         float lTargetAngle = lDirection.Angle();
-
-        Rotation = Mathf.LerpAngle(Rotation, lTargetAngle, ROTATION_SPEED * pDelta);
+    
+        Rotation = Mathf.LerpAngle(Rotation, lTargetAngle, rotationSpeed * pDelta);
         velocity = Vector2.FromAngle(Rotation);
     }
-
 }
