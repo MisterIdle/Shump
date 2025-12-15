@@ -24,4 +24,10 @@ public partial class Bullet : Ammo
         velocity = Vector2.FromAngle(lFinalAngle) * pWay.Length();
         Rotation = lFinalAngle;
     }
+
+    protected override void OnCollide(Area2D pArea)
+    {
+        base.OnCollide(pArea);
+        QueueFree();
+    }
 }

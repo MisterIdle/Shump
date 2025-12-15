@@ -5,7 +5,7 @@ public partial class Upgrade : Collectible
 {
     protected override void OnCollide(Area2D pArea)
     {
-        player.level++;
+        //player.level++;
         base.OnCollide(pArea);
     }
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_teeat"]
 [ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet/bullet.tscn" id="2_1d8ap"]
 [ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/bullet/rocket.tscn" id="3_kgsam"]
-[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/Circle.png" id="4_82qun"]
+[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/circle.png" id="4_82qun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aolpp"]
 size = Vector2(64, 62)
@@ -17,7 +17,7 @@ bulletSpace = 200.0
 bulletScene = ExtResource("2_1d8ap")
 rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
-speed = 200.0
+speed = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aolpp")

@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://3ih3q3sbmy0x"]
+[gd_scene load_steps=6 format=3 uid="uid://3ih3q3sbmy0x"]
 
 [ext_resource type="Script" path="res://scripts/Turtle.cs" id="1_2cpat"]
 [ext_resource type="Texture2D" uid="uid://bqpfdm0uu4p" path="res://sprites/icon.svg" id="1_ul2jv"]
 [ext_resource type="PackedScene" uid="uid://cvuojolbkcpt6" path="res://scenes/bullet/enemybullet.tscn" id="2_5ja5s"]
+[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/circle.png" id="3_5m253"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5co2"]
-size = Vector2(88, 90)
+size = Vector2(64, 64)
 
 [node name="Turtle" type="Area2D"]
 collision_layer = 2
@@ -13,11 +14,16 @@ script = ExtResource("1_2cpat")
 shootRate = 0.5
 shootScene = ExtResource("2_5ja5s")
 playerDistance = 40.0
+speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p5co2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 1, 1)
-scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_5m253")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-34, 0)
+scale = Vector2(0.234375, 0.078125)
 texture = ExtResource("1_ul2jv")

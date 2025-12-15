@@ -11,7 +11,7 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 2
 script = ExtResource("1_6dnyj")
 rotationSpeed = 1.0
-speed = 150.0
+speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f7rf7")

@@ -33,4 +33,12 @@ public partial class Rocket : Ammo
         Rotation = Mathf.LerpAngle(Rotation, lTargetAngle, rotationSpeed * pDelta);
         velocity = Vector2.FromAngle(Rotation);
     }
+
+    protected override void OnCollide(Area2D pArea)
+    {
+        base.OnCollide(pArea);
+
+        if (!isActive) return;
+        QueueFree();
+    }
 }

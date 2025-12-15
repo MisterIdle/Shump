@@ -8,26 +8,38 @@ public partial class Enemy : Entity
     [Export] protected float playerDistance;
     private bool targeted;
 
+    protected Vector2 playerDirection;
+
     public override void Initialize()
     {
-        enemyList.Add(this);
-        velocity = Vector2.Left;
-
         base.Initialize();
+
+        enemyList.Add(this);
+        playerDirection = DirectionTo(Player.GetInstance());
     }
 
-    public static Enemy GetTarget()
+    protected Entity GetNearestEnemy()
     {
-        for (int i = enemyList.Count - 1; i >= 0; i--)
+        Enemy lNearest = null;
+        float lMinDistance = float.MaxValue;
+
+        foreach (Enemy lEnemy in enemyList)
         {
-            if (!enemyList[i].targeted)
+            if (lEnemy == this)
+                continue;
+
+            float lDistance = DistanceTo(lEnemy);
+
+            if (lDistance < lMinDistance)
             {
-                enemyList[i].targeted = false;
-                return enemyList[i];
+                lMinDistance = lDistance;
+                lNearest = lEnemy;
             }
         }
-        return null;
+
+        return lNearest;
     }
+
 
     protected virtual void DetectPlayer() { }
 }

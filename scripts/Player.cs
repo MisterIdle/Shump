@@ -37,7 +37,7 @@ public partial class Player : Entity
         if (CanFire())
         {
             lastBullet = Bullet.Create(bulletScene, mouthPos.GlobalPosition, Vector2.Right);
-            gameContainer.AddChild(lastBullet);
+            GameManager.GetInstance().AddChild(lastBullet);
             //Rocket.Create(rocketScene, this, Enemy.GetTarget(), mouthPos.GlobalPosition);
         }
 
@@ -50,7 +50,7 @@ public partial class Player : Entity
 
         Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN").Normalized();
 
-        Vector2 lScroll = Vector2.Right * gameManager.scrollSpeed;
+        Vector2 lScroll = Vector2.Right * GameManager.GetInstance().scrollSpeed;
         Vector2 lMove = (lDirection * speed + lScroll) * pDelta;
 
         Position += lMove;

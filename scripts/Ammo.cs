@@ -6,11 +6,7 @@ public partial class Ammo : Movable
 
     protected override void OnCollide(Area2D pArea)
     {
-        QueueFree();
-
         if (pArea is Entity pEntity)
-        {
             pEntity.TakeDamage();
-        }
     }
 }

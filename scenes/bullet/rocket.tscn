@@ -9,6 +9,7 @@
 [node name="Rocket" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_51r88")
+speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_af1o1")

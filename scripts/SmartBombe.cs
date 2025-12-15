@@ -5,7 +5,7 @@ public partial class SmartBombe : Collectible
 {
     protected override void OnCollide(Area2D pArea)
     {
-        player.smartBombe++;
+        //player.smartBombe++;
         base.OnCollide(pArea);
     }
 }

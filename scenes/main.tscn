@@ -4,16 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://deobxo14cc5i3" path="res://scenes/player.tscn" id="1_raey7"]
 [ext_resource type="Script" path="res://scripts/GameManager.cs" id="2_gsbi6"]
 [ext_resource type="PackedScene" uid="uid://y3jnykne6e4a" path="res://scenes/bullet/trigger.tscn" id="5_0ienn"]
-[ext_resource type="PackedScene" uid="uid://dqnwl47to4sjq" path="res://scenes/entity/spiky.tscn" id="5_awcj5"]
+[ext_resource type="PackedScene" uid="uid://ci0d8ipqdelnt" path="res://scenes/entity/popcorn.tscn" id="6_uh4hq"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0wpnf")
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("gameContainer", "baseContainer", "bulletContainer")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("gameContainer", "baseContainer")]
 script = ExtResource("2_gsbi6")
 gameContainer = NodePath("../GameContainer")
 baseContainer = NodePath("../GameContainer/BaseContainer")
-bulletContainer = NodePath("../GameContainer")
 scrollSpeed = 50.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -35,5 +34,11 @@ position = Vector2(292, 274)
 
 [node name="EnemyContainer" type="Node2D" parent="GameContainer"]
 
-[node name="Spiky" parent="GameContainer/EnemyContainer" instance=ExtResource("5_awcj5")]
-position = Vector2(1181, 276)
+[node name="PopCorn" parent="GameContainer/EnemyContainer" instance=ExtResource("6_uh4hq")]
+position = Vector2(1261, 456)
+
+[node name="PopCorn2" parent="GameContainer/EnemyContainer" instance=ExtResource("6_uh4hq")]
+position = Vector2(1412, 403)
+
+[node name="PopCorn3" parent="GameContainer/EnemyContainer" instance=ExtResource("6_uh4hq")]
+position = Vector2(1112, 402)

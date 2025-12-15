@@ -14,11 +14,12 @@ public partial class Spiky : ShootingEnemy
     [Export] private int numSpike = 10;
     [Export] private float distance = 50f;
     [Export] private float duration = 0.5f;
+    [Export] private float animation = 0.1f;
+    [Export] private int numSpikeActif = 2;
 
     [Export] private float minDistance = 400f;
     [Export] private float maxDistance = 500f;
 
-    [Export] private float leftBoundary = 450f;
     [Export] private float returnSpeed = 1.2f;
 
     private List<Rocket> spikesList = new();
@@ -30,26 +31,26 @@ public partial class Spiky : ShootingEnemy
     {
         base.DoMove(pDelta);
 
-        Vector2 lDistanceToPlayer = player.GlobalPosition - GlobalPosition;
-        float lPlayerDistance = lDistanceToPlayer.Length();
-        Vector2 lDirectionToPlayer = lDistanceToPlayer.Normalized();
+        float lPlayerDistance = DistanceTo(Player.GetInstance());
+        playerDirection = DirectionTo(Player.GetInstance());
 
-        float lTargetAngle = lDirectionToPlayer.Angle();
-        Rotation = Mathf.LerpAngle(Rotation, lTargetAngle, pDelta);
+        velocity = playerDirection;
 
         if (lPlayerDistance >= minDistance)
             moveState = MoveState.ChasePlayer;
         else
             moveState = MoveState.FleePlayer;
 
+
+
         switch (moveState)
         {
             case MoveState.ChasePlayer:
-                velocity = lDirectionToPlayer;
+                velocity = playerDirection;
                 break;
 
             case MoveState.FleePlayer:
-                velocity = -lDirectionToPlayer;
+                velocity = -playerDirection;
                 break;
         }
     }
@@ -61,7 +62,7 @@ public partial class Spiky : ShootingEnemy
         if (attackCheck)
             SpawnSpikes();
         else
-            ActivateRandomRockets(2);
+            ActivateRandomRockets(numSpikeActif);
 
         attackCheck = !attackCheck;
     }
@@ -75,7 +76,7 @@ public partial class Spiky : ShootingEnemy
             if (i < spikesList.Count && spikesList[i] != null && !spikesList[i].isActive)
                 continue;
 
-            Rocket lRocket = Rocket.Create(shootScene, player, Vector2.Zero);
+            Rocket lRocket = Rocket.Create(shootScene, Player.GetInstance(), Vector2.Zero);
 
             Vector2 lDirection = Vector2.FromAngle(lAngleStep * i);
             Vector2 lTargetPosition = lDirection * distance;
@@ -92,9 +93,9 @@ public partial class Spiky : ShootingEnemy
 
             Tween lTween = CreateTween();
             lTween.TweenProperty(lRocket, "position", lTargetPosition, duration)
-                  .SetTrans(Tween.TransitionType.Spring)
-                  .SetEase(Tween.EaseType.Out)
-                  .SetDelay(i * 0.1f);
+                  .SetTrans(Tween.TransitionType.Back)
+                  .SetEase(Tween.EaseType.InOut)
+                  .SetDelay(i * animation);
         }
     }
 
@@ -134,7 +135,7 @@ public partial class Spiky : ShootingEnemy
         float lGlobalRotation = pRocket.GlobalRotation;
 
         RemoveChild(pRocket);
-        gameContainer.AddChild(pRocket);
+        GameManager.GetInstance().AddChild(pRocket);
 
         pRocket.GlobalPosition = lGlobalPosition;
         pRocket.GlobalRotation = lGlobalRotation;

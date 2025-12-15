@@ -6,6 +6,17 @@ public partial class Entity : Movable
     [Export] public int health = 1;
     [Export] public bool invulnerability;
 
+    protected Vector2 DirectionTo(Entity pEntity)
+    {
+        return (pEntity.GlobalPosition - GlobalPosition).Normalized();
+    }
+
+    protected float DistanceTo(Entity pEntity)
+    {
+        return (pEntity.GlobalPosition - GlobalPosition).Length();
+    }
+
+
     protected void SetInvulnerability(bool pBool)
     {
         invulnerability = pBool;
