@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://deobxo14cc5i3"]
+[gd_scene load_steps=8 format=3 uid="uid://deobxo14cc5i3"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_teeat"]
 [ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet/bullet.tscn" id="2_1d8ap"]
 [ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/bullet/rocket.tscn" id="3_kgsam"]
+[ext_resource type="PackedScene" uid="uid://d2064xfocg8pa" path="res://scenes/hammer.tscn" id="4_6s05m"]
 [ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/circle.png" id="4_82qun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aolpp"]
@@ -10,13 +11,14 @@ size = Vector2(64, 62)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_272wc"]
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("mouthPos")]
+[node name="Player" type="Area2D" node_paths=PackedStringArray("mouthPos", "hammer")]
 collision_mask = 6
 script = ExtResource("1_teeat")
 bulletSpace = 200.0
 bulletScene = ExtResource("2_1d8ap")
 rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
+hammer = NodePath("Hammer")
 speed = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,6 +27,9 @@ shape = SubResource("RectangleShape2D_aolpp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("4_82qun")
+
+[node name="Hammer" parent="." instance=ExtResource("4_6s05m")]
+scale = Vector2(3, 3)
 
 [node name="Mouth" type="Node2D" parent="."]
 

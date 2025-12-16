@@ -14,6 +14,8 @@ public partial class Player : Entity
 
     [Export] public Marker2D mouthPos;
 
+    [Export] private Hammer hammer;
+
     public int level;
     public int smartBombe;
 
@@ -29,10 +31,13 @@ public partial class Player : Entity
         if (instance == null)
             instance = this;
         else QueueFree();
+
+        hammer.Initialize();
     }
 
     protected override void DoAction(float pDelta)
     {
+        hammer.Attack(pDelta);
 
         if (CanFire())
         {
@@ -44,15 +49,32 @@ public partial class Player : Entity
         DoMove(pDelta);
     }
 
+    private bool isDashing;
+    private float dashTimeLeft;
+    private float dashSpeed;
+
+    public void Dash(float time)
+    {
+        isDashing = true;
+        dashTimeLeft = time;
+        dashSpeed = speed * 3f;
+    }
+
     protected override void DoMove(float pDelta)
     {
-        base.DoMove(pDelta);
-
         Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN").Normalized();
-
         Vector2 lScroll = Vector2.Right * GameManager.GetInstance().scrollSpeed;
-        Vector2 lMove = (lDirection * speed + lScroll) * pDelta;
 
+        if (isDashing)
+        {
+            Position += Vector2.Right * dashSpeed * pDelta;
+            dashTimeLeft -= pDelta;
+            if (dashTimeLeft <= 0f)
+                isDashing = false;
+            return;
+        }
+
+        Vector2 lMove = (lDirection * speed + lScroll) * pDelta;
         Position += lMove;
     }
 
