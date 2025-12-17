@@ -19,6 +19,8 @@ bulletScene = ExtResource("2_1d8ap")
 rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
 hammer = NodePath("Hammer")
+fallDeath = 10.0
+deathJump = 3.0
 speed = 250.0
 metadata/_edit_vertical_guides_ = [-215.0]
 
@@ -41,4 +43,4 @@ scale = Vector2(0.01, 0.007)
 texture = SubResource("CompressedTexture2D_272wc")
 
 [node name="Marker2D" type="Marker2D" parent="Mouth"]
-position = Vector2(9, 0)
+position = Vector2(28, 0)

@@ -7,21 +7,18 @@ public partial class GameManager : Node2D
     [Export] public Node2D baseContainer;
     [Export] public Node2D bulletContainer;
 
-    private static GameManager instance;
-
     [Export] public float scrollSpeed;
 
-    public static GameManager GetInstance()
-    {
-        return instance;
-    }
+    public Vector2 screenSize;
+
+    private static GameManager instance;
+
+    public static GameManager GetInstance() => instance;
 
     public override void _Ready()
     {
         if (instance == null) instance = this;
         else QueueFree();
-
-        GD.Print(Name + " is ready");
 
         foreach (Node lObject in baseContainer.GetChildren())
         {
@@ -31,5 +28,12 @@ public partial class GameManager : Node2D
             if (lObject is Trigger lCamera)
                 lCamera.Initialize();
         }
+    }
+
+    public override void _Process(double pDelta)
+    {
+        float lDelta = (float)pDelta;
+
+        screenSize = GetViewportRect().Size + Trigger.GetInstance().Position;
     }
 }

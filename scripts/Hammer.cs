@@ -10,7 +10,7 @@ public partial class Hammer : GameObject
 
     [Export] private Sprite2D sprite;
     [Export] private TextureProgressBar progressBar;
-    [Export] private CpuParticles2D particule;
+    [Export] private GpuParticles2D particule;
 
     [Export] private float maxChargeTime = 1f;
     [Export] private float maxChargedTime = 3f;
@@ -28,18 +28,19 @@ public partial class Hammer : GameObject
     [Export] private float chargeTweenTime = 0.1f;
     [Export] private float chargedTweenTime = 3f;
 
-    private Color white = Colors.White;
-    private Color yellow = Colors.Yellow;
-    private Color orange = Colors.Orange;
-    private Color red = Colors.Red;
+    [Export] private float hammerHide = 0.2f;
 
     private Tween tween;
+    private Timer animationTimer;
 
     private float chargeTime;
     private float attackTime;
 
     private static Hammer instance;
-    public static Hammer GetInstance() => instance;
+    public static Hammer GetInstance() 
+    {  
+        return instance;
+    }
 
     public override void _Ready()
     {
@@ -47,13 +48,24 @@ public partial class Hammer : GameObject
         else QueueFree();
     }
 
+    protected override void DoAction(float pDelta)
+    {
+        base.DoAction(pDelta);
+        particule.GlobalPosition = GlobalPosition;
+    }
+
     public override void Initialize()
     {
         base.Initialize();
         enable = false;
+
         state = State.Idle;
         attackTime = baseAttackTime;
-        sprite.Visible = false;
+
+        animationTimer = new Timer();
+        AddChild(animationTimer);
+
+        Player.GetInstance().invulnerability = false;
         SetRotation(idleRotation, maxChargeTime);
     }
 
@@ -62,8 +74,6 @@ public partial class Hammer : GameObject
         progressBar.Value = chargeTime;
 
         if (chargeTime <= 0) chargeTime = 0;
-
-        GD.Print(chargeTime);
 
         if (state == State.Swing)
             SwingAttack();
@@ -77,22 +87,21 @@ public partial class Hammer : GameObject
 
             case State.Charging:
                 chargeTime += pDelta;
-                progressBar.TintProgress = yellow;
+                progressBar.TintProgress = Colors.Yellow;
 
                 if (chargeTime >= maxChargeTime)
                     FullyCharged();
 
                 if (Input.IsActionJustReleased("SPECIAL"))
                     ResetToIdle();
+
                 break;
 
             case State.Charged:
                 chargeTime += pDelta;
                 attackTime += attackTimeGrowth * pDelta;
 
-                GD.Print(attackTime);
-
-                progressBar.TintProgress = orange;
+                progressBar.TintProgress = Colors.Orange;
 
                 if (Input.IsActionJustReleased("SPECIAL") || chargeTime > maxChargedTime)
                     StartSwing();
@@ -110,15 +119,16 @@ public partial class Hammer : GameObject
     private void StartCharging()
     {
         particule.Emitting = true;
-        sprite.Visible = true;
         progressBar.Visible = true;
+        sprite.Visible = true;
+
         state = State.Charging;
         SetRotation(startChargeRotation, maxChargeTime - chargeTweenTime);
     }
 
     private void FullyCharged()
     {
-        progressBar.TintProgress = orange;
+        progressBar.TintProgress = Colors.Orange;
         state = State.Charged;
         SetRotation(chargedRotation, chargedTweenTime);
     }
@@ -127,7 +137,7 @@ public partial class Hammer : GameObject
     {
         state = State.Swing;
 
-        progressBar.TintProgress = red;
+        progressBar.TintProgress = Colors.Red;
 
         Player.GetInstance().invulnerability = true;
         Player.GetInstance().Dash(attackTime / 2);
@@ -155,16 +165,18 @@ public partial class Hammer : GameObject
     private void EndCooldown()
     {
         attackTime = baseAttackTime;
-        Player.GetInstance().invulnerability = false;
         ResetToIdle();
     }
 
     private void ResetToIdle()
     {
         chargeTime = 0;
-        progressBar.TintProgress = yellow;
-        sprite.Visible = false;
+        progressBar.TintProgress = Colors.Yellow;
+
         progressBar.Visible = false;
+        particule.Emitting = true;
+        sprite.Visible = false;
+
         state = State.Idle;
         SetRotation(idleRotation, 0);
     }
@@ -179,13 +191,10 @@ public partial class Hammer : GameObject
                 float lDistance = sprite.GlobalPosition.DistanceTo(lEntity.GlobalPosition);
                 if (lDistance <= lRange)
                 {
-                    GD.PrintErr(lEntity.Name);
                     lEntity.TakeDamage();
-                } 
-                else
-                {
-                    hitEntity.Add(lEntity);
                 }
+                else
+                    hitEntity.Add(lEntity);
             }
     }
 
@@ -200,8 +209,18 @@ public partial class Hammer : GameObject
 
         state = State.Cooldown;
 
-        particule.Emitting = true;
+        animationTimer.WaitTime = hammerHide;
+        animationTimer.OneShot = true;
+
+        animationTimer.Timeout += FinishAttackAnimation;
+        animationTimer.Start();
+
+        Player.GetInstance().invulnerability = false;
+    }
+    private void FinishAttackAnimation()
+    {
         sprite.Visible = false;
+        particule.Emitting = true;
     }
 
     private void SetRotation(float pTarget, float pTime)

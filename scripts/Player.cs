@@ -44,7 +44,7 @@ public partial class Player : Entity
     private void Fire()
     {
         lastBullet = Bullet.Create(bulletScene, mouthPos.GlobalPosition, Vector2.Right);
-        GameManager.GetInstance().AddChild(lastBullet);
+        GameManager.GetInstance().gameContainer.AddChild(lastBullet);
     }
 
     public void Dash(float pTime)
@@ -54,15 +54,23 @@ public partial class Player : Entity
         dashSpeed = speed * 3f;
     }
 
-    protected override void DoMove(float delta)
+    protected override void DoMove(float pDelta)
+    {
+        if (isDeath)
+            base.DoMove(pDelta);
+        else
+            Movement(pDelta);
+    }
+
+    private void Movement(float pDelta)
     {
         Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         Vector2 lScroll = Vector2.Right * GameManager.GetInstance().scrollSpeed;
 
         if (isDashing)
         {
-            velocity = velocity.Lerp(Vector2.Right * dashSpeed, 10f * delta);
-            dashTimeLeft -= delta;
+            velocity = velocity.Lerp(Vector2.Right * dashSpeed, 10f * pDelta);
+            dashTimeLeft -= pDelta;
 
             if (dashTimeLeft <= 0f)
                 isDashing = false;
@@ -70,10 +78,10 @@ public partial class Player : Entity
         else
         {
             Vector2 lTargetVelocity = lDirection * speed + lScroll;
-            velocity = velocity.Lerp(lTargetVelocity, 8f * delta);
+            velocity = velocity.Lerp(lTargetVelocity, 8f * pDelta);
         }
 
-        Position += velocity * delta;
+        Position += velocity * pDelta;
     }
 
     private bool CanFire()

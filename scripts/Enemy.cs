@@ -18,6 +18,16 @@ public partial class Enemy : Entity
         playerDirection = DirectionTo(Player.GetInstance());
     }
 
+    protected override void DoMove(float pDelta)
+    {
+        base.DoMove(pDelta);
+
+        if (!Utils.OutOfBound(Position))
+            Position += velocity * speed * pDelta;
+        else
+            QueueFree();
+    }
+
     protected Entity GetNearestEnemy()
     {
         Enemy lNearest = null;

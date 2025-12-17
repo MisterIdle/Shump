@@ -1,32 +1,49 @@
 using Godot;
-using System;
 
 public partial class Entity : Movable
 {
     [Export] public int health = 1;
     [Export] public bool invulnerability;
 
-    protected Vector2 DirectionTo(Entity pEntity)
+    [Export] protected float fallDeath = 20f;
+    [Export] protected float deathJump = 5f;
+
+    protected bool isDeath = false;
+
+    protected override void DoMove(float pDelta)
     {
-        return (pEntity.GlobalPosition - GlobalPosition).Normalized();
+        if (isDeath)
+        {
+            velocity.Y += fallDeath * pDelta;
+        }
+
+        base.DoMove(pDelta);
     }
 
-    protected float DistanceTo(Entity pEntity)
-    {
-        return (pEntity.GlobalPosition - GlobalPosition).Length();
+    protected Vector2 DirectionTo(Entity pEntity) 
+    { 
+        return (pEntity.GlobalPosition - GlobalPosition).Normalized(); 
     }
 
+    protected float DistanceTo(Entity pEntity) 
+    { 
+        return (pEntity.GlobalPosition - GlobalPosition).Length(); 
+    }
 
-    protected void SetInvulnerability(bool pBool)
+    public void Fall()
     {
-        invulnerability = pBool;
+        if (!isDeath)
+            return;
+
+        velocity.Y = -deathJump;
     }
 
     public void TakeDamage()
     {
-        if (invulnerability) return;
+        if (invulnerability)
+            return;
 
-        health -= 1;
+        health--;
 
         if (health <= 0)
             Death();
@@ -34,15 +51,19 @@ public partial class Entity : Movable
 
     protected virtual void Death()
     {
-        QueueFree();
+        velocity = Vector2.Zero;
+        isDeath = true;
+        invulnerability = true;
+        Fall();
     }
 
     protected override void OnCollide(Area2D pArea)
     {
-        if (pArea is Entity lEntity && !lEntity.invulnerability)
+        if (pArea is Enemy lEnemy && !lEnemy.invulnerability && !lEnemy.isDeath)
         {
-            lEntity.TakeDamage();
+            lEnemy.TakeDamage();
             TakeDamage();
         }
+
     }
 }
