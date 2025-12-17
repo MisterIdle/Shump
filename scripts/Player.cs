@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Player : Entity
 {
@@ -7,80 +6,84 @@ public partial class Player : Entity
     [Export] private bool autoShoot;
     [Export] private float bulletSpace;
 
-    private Bullet lastBullet;
-
-    [Export] public PackedScene bulletScene;
-    [Export] public PackedScene rocketScene;
-
-    [Export] public Marker2D mouthPos;
-
+    [Export] private PackedScene bulletScene;
+    [Export] private PackedScene rocketScene;
+    [Export] private Marker2D mouthPos;
     [Export] private Hammer hammer;
 
     public int level;
     public int smartBombe;
 
-    private static Player instance;
-
-    public static Player GetInstance()
-    {
-        return instance;
-    }
-
-    public override void _Ready()
-    {
-        if (instance == null)
-            instance = this;
-        else QueueFree();
-
-        hammer.Initialize();
-    }
-
-    protected override void DoAction(float pDelta)
-    {
-        hammer.Attack(pDelta);
-
-        if (CanFire())
-        {
-            lastBullet = Bullet.Create(bulletScene, mouthPos.GlobalPosition, Vector2.Right);
-            GameManager.GetInstance().AddChild(lastBullet);
-            //Rocket.Create(rocketScene, this, Enemy.GetTarget(), mouthPos.GlobalPosition);
-        }
-
-        DoMove(pDelta);
-    }
+    private Bullet lastBullet;
 
     private bool isDashing;
     private float dashTimeLeft;
     private float dashSpeed;
 
-    public void Dash(float time)
+    static Player instance;
+    public static Player GetInstance() => instance;
+
+    public override void _Ready()
+    {
+        if (instance == null) instance = this;
+        else QueueFree();
+
+        hammer.Initialize();
+    }
+
+    protected override void DoAction(float delta)
+    {
+        hammer.Attack(delta);
+
+        if (CanFire())
+            Fire();
+
+        DoMove(delta);
+    }
+
+    private void Fire()
+    {
+        lastBullet = Bullet.Create(bulletScene, mouthPos.GlobalPosition, Vector2.Right);
+        GameManager.GetInstance().AddChild(lastBullet);
+    }
+
+    public void Dash(float pTime)
     {
         isDashing = true;
-        dashTimeLeft = time;
+        dashTimeLeft = pTime;
         dashSpeed = speed * 3f;
     }
 
-    protected override void DoMove(float pDelta)
+    protected override void DoMove(float delta)
     {
-        Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN").Normalized();
+        Vector2 lDirection = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         Vector2 lScroll = Vector2.Right * GameManager.GetInstance().scrollSpeed;
 
         if (isDashing)
         {
-            Position += Vector2.Right * dashSpeed * pDelta;
-            dashTimeLeft -= pDelta;
+            velocity = velocity.Lerp(Vector2.Right * dashSpeed, 10f * delta);
+            dashTimeLeft -= delta;
+
             if (dashTimeLeft <= 0f)
                 isDashing = false;
-            return;
+        }
+        else
+        {
+            Vector2 lTargetVelocity = lDirection * speed + lScroll;
+            velocity = velocity.Lerp(lTargetVelocity, 8f * delta);
         }
 
-        Vector2 lMove = (lDirection * speed + lScroll) * pDelta;
-        Position += lMove;
+        Position += velocity * delta;
     }
-
 
     private bool CanFire()
     {
-        return Input.IsActionPressed("SHOOT") && (!IsInstanceValid(lastBullet) || lastBullet.Position.X - Position.X > bulletSpace);
+        if (!Input.IsActionPressed("SHOOT"))
+            return false;
+
+        if (!IsInstanceValid(lastBullet))
+            return true;
+
+        return lastBullet.Position.X - Position.X > bulletSpace;
     }
 }

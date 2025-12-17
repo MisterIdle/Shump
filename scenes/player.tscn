@@ -20,6 +20,7 @@ rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
 hammer = NodePath("Hammer")
 speed = 250.0
+metadata/_edit_vertical_guides_ = [-215.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aolpp")

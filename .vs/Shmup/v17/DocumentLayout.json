@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Alexy\\Desktop\\Shump\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|c:\\users\\alexy\\desktop\\shump\\scripts\\trigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|solutionrelative:scripts\\trigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|c:\\users\\alexy\\desktop\\shump\\scripts\\hammer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|solutionrelative:scripts\\hammer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|c:\\users\\alexy\\desktop\\shump\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|c:\\users\\alexy\\desktop\\shump\\scripts\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|solutionrelative:scripts\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|c:\\users\\alexy\\desktop\\shump\\scripts\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|solutionrelative:scripts\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|c:\\users\\alexy\\desktop\\shump\\scripts\\popcorn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E732B61D-EBBF-41A3-8C71-4FD82D98B7CD}|Shmup.csproj|solutionrelative:scripts\\popcorn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 272,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Trigger.cs",
+              "DocumentMoniker": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Trigger.cs",
+              "RelativeDocumentMoniker": "scripts\\Trigger.cs",
+              "ToolTip": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Trigger.cs",
+              "RelativeToolTip": "scripts\\Trigger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T08:46:40.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Entity.cs",
+              "DocumentMoniker": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Entity.cs",
+              "RelativeDocumentMoniker": "scripts\\Entity.cs",
+              "ToolTip": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Entity.cs",
+              "RelativeToolTip": "scripts\\Entity.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA8wDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T08:00:00.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Main.cs",
+              "RelativeDocumentMoniker": "scripts\\Main.cs",
+              "ToolTip": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Main.cs",
+              "RelativeToolTip": "scripts\\Main.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T07:59:46.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Player.cs",
               "RelativeDocumentMoniker": "scripts\\Player.cs",
               "ToolTip": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Player.cs",
               "RelativeToolTip": "scripts\\Player.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAwwB4AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAqwEQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T08:11:33.013Z"
+              "WhenOpened": "2025-12-16T08:11:33.013Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Hammer.cs",
               "DocumentMoniker": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Hammer.cs",
               "RelativeDocumentMoniker": "scripts\\Hammer.cs",
               "ToolTip": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\Hammer.cs",
               "RelativeToolTip": "scripts\\Hammer.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAuwJMAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAM4AAAAAAAAAAAA2wEEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-16T08:05:29.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PopCorn.cs",
+              "DocumentMoniker": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\PopCorn.cs",
+              "RelativeDocumentMoniker": "scripts\\PopCorn.cs",
+              "ToolTip": "C:\\Users\\Alexy\\Desktop\\Shump\\scripts\\PopCorn.cs",
+              "RelativeToolTip": "scripts\\PopCorn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T08:58:50.495Z",
               "EditorCaption": ""
             }
           ]

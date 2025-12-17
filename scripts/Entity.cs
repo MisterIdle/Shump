@@ -39,7 +39,7 @@ public partial class Entity : Movable
 
     protected override void OnCollide(Area2D pArea)
     {
-        if (pArea is Entity lEntity)
+        if (pArea is Entity lEntity && !lEntity.invulnerability)
         {
             lEntity.TakeDamage();
             TakeDamage();
