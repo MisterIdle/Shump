@@ -8,7 +8,7 @@ public partial class Entity : Movable
     [Export] protected float fallDeath = 20f;
     [Export] protected float deathJump = 5f;
 
-    protected bool isDeath = false;
+    public bool isDeath = false;
 
     protected override void DoMove(float pDelta)
     {

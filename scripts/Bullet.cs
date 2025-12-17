@@ -1,5 +1,4 @@
 using Godot;
-using System.Net.Sockets;
 
 public partial class Bullet : Ammo
 {

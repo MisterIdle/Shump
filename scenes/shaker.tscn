@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://h8fbgcr6chyo"]
+
+[ext_resource type="Script" path="res://scripts/Shaker.cs" id="1_wfjq1"]
+
+[node name="Shaker" type="Node2D" node_paths=PackedStringArray("targets")]
+script = ExtResource("1_wfjq1")
+targets = []
+duration = null
+amplitude = null
+step = null

@@ -14,6 +14,5 @@ public partial class Movable : GameObject
     protected virtual void DoMove(float pDelta) 
     {
         Position += velocity * speed * pDelta;
-
     }
 }

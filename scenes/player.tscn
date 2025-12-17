@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bov1o2ttuha02" path="res://scenes/bullet/bullet.tscn" id="2_1d8ap"]
 [ext_resource type="PackedScene" uid="uid://d157avdc4ypq4" path="res://scenes/bullet/rocket.tscn" id="3_kgsam"]
 [ext_resource type="PackedScene" uid="uid://d2064xfocg8pa" path="res://scenes/hammer.tscn" id="4_6s05m"]
-[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/circle.png" id="4_82qun"]
+[ext_resource type="Texture2D" uid="uid://bb14g511arvwg" path="res://sprites/Circle.png" id="4_82qun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aolpp"]
 size = Vector2(64, 62)
@@ -19,8 +19,6 @@ bulletScene = ExtResource("2_1d8ap")
 rocketScene = ExtResource("3_kgsam")
 mouthPos = NodePath("Mouth/Marker2D")
 hammer = NodePath("Hammer")
-fallDeath = 10.0
-deathJump = 3.0
 speed = 250.0
 metadata/_edit_vertical_guides_ = [-215.0]
 

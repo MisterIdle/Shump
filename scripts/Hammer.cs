@@ -63,6 +63,9 @@ public partial class Hammer : GameObject
         attackTime = baseAttackTime;
 
         animationTimer = new Timer();
+        animationTimer.WaitTime = hammerHide;
+        animationTimer.OneShot = true;
+        animationTimer.Timeout += FinishAttackAnimation;
         AddChild(animationTimer);
 
         Player.GetInstance().invulnerability = false;
@@ -87,7 +90,8 @@ public partial class Hammer : GameObject
 
             case State.Charging:
                 chargeTime += pDelta;
-                progressBar.TintProgress = Colors.Yellow;
+                progressBar.TintProgress = LerpColors(Colors.Red, Colors.Orange, chargeTime);
+
 
                 if (chargeTime >= maxChargeTime)
                     FullyCharged();
@@ -101,7 +105,8 @@ public partial class Hammer : GameObject
                 chargeTime += pDelta;
                 attackTime += attackTimeGrowth * pDelta;
 
-                progressBar.TintProgress = Colors.Orange;
+                progressBar.TintProgress = LerpColors(Colors.Orange, Colors.Green, chargeTime / maxChargedTime);
+
 
                 if (Input.IsActionJustReleased("SPECIAL") || chargeTime > maxChargedTime)
                     StartSwing();
@@ -128,7 +133,6 @@ public partial class Hammer : GameObject
 
     private void FullyCharged()
     {
-        progressBar.TintProgress = Colors.Orange;
         state = State.Charged;
         SetRotation(chargedRotation, chargedTweenTime);
     }
@@ -138,6 +142,7 @@ public partial class Hammer : GameObject
         state = State.Swing;
 
         progressBar.TintProgress = Colors.Red;
+
 
         Player.GetInstance().invulnerability = true;
         Player.GetInstance().Dash(attackTime / 2);
@@ -171,7 +176,6 @@ public partial class Hammer : GameObject
     private void ResetToIdle()
     {
         chargeTime = 0;
-        progressBar.TintProgress = Colors.Yellow;
 
         progressBar.Visible = false;
         particule.Emitting = true;
@@ -183,15 +187,17 @@ public partial class Hammer : GameObject
 
     private void SwingAttack()
     {
-        float lRange = 75f;
+        float lRange = 65f;
 
         foreach (Entity lGlobalEntity in GetOverlappingAreas())
             if (lGlobalEntity is Entity lEntity)
             {
                 float lDistance = sprite.GlobalPosition.DistanceTo(lEntity.GlobalPosition);
-                if (lDistance <= lRange)
+                if (lDistance <= lRange && !lEntity.isDeath)
                 {
                     lEntity.TakeDamage();
+                    TimeController.SlowFreeze(GetTree(), 0.1f, 0.0001f);
+                    Shaker.Shake(GameManager.GetInstance().gameContainer, 0.4f, 25f, 10f);
                 }
                 else
                     hitEntity.Add(lEntity);
@@ -209,16 +215,13 @@ public partial class Hammer : GameObject
 
         state = State.Cooldown;
 
-        animationTimer.WaitTime = hammerHide;
-        animationTimer.OneShot = true;
-
-        animationTimer.Timeout += FinishAttackAnimation;
         animationTimer.Start();
 
         Player.GetInstance().invulnerability = false;
     }
     private void FinishAttackAnimation()
     {
+        Shaker.Shake(GameManager.GetInstance().gameContainer, 0.4f, 25f, 10f);
         sprite.Visible = false;
         particule.Emitting = true;
     }
@@ -231,5 +234,10 @@ public partial class Hammer : GameObject
         tween.TweenProperty(sprite, "rotation_degrees", pTarget, pTime)
              .SetEase(Tween.EaseType.InOut)
              .SetTrans(Tween.TransitionType.Back);
+    }
+
+    private Color LerpColors(Color pColorA, Color ColorB, float pTime)
+    {
+        return pColorA.Lerp(ColorB, Mathf.Clamp(pTime, 0f, 1f));
     }
 }

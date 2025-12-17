@@ -35,10 +35,10 @@ position = Vector2(292, 274)
 [node name="EnemyContainer" type="Node2D" parent="GameContainer"]
 
 [node name="PopCorn" parent="GameContainer/EnemyContainer" instance=ExtResource("6_uh4hq")]
-position = Vector2(1161, 491)
+position = Vector2(1168, 568)
 
 [node name="PopCorn2" parent="GameContainer/EnemyContainer" instance=ExtResource("6_uh4hq")]
 position = Vector2(1162, 401)
 
 [node name="PopCorn3" parent="GameContainer/EnemyContainer" instance=ExtResource("6_uh4hq")]
-position = Vector2(1223, 337)
+position = Vector2(1224, 244)
